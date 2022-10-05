@@ -1,0 +1,37 @@
+version: "3.5"
+
+services:
+    scrypted:
+        image: koush/scrypted
+        container_name: scrypted
+        restart: unless-stopped
+        network_mode: host
+        volumes:
+            - /opt/homekit/scrypted/_data:/server/volume
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "10m"
+                max-file: "10"
+
+    homebridge:
+        image: oznu/homebridge:latest
+        container_name: homebridge
+        restart: unless-stopped
+        network_mode: host
+        volumes:
+            - /opt/homekit/homebridge/_data:/homebridge
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "10m"
+                max-file: "1"
+
+    # watchtower manages auto updates. this is optional.
+    watchtower:
+        image: containrrr/watchtower
+        restart: unless-stopped
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        # check for updates once an hour (interval is in seconds)
+        command: --interval 3600 --cleanup
