@@ -1,37 +1,66 @@
 version: "3.5"
 
 services:
-    scrypted:
-        image: koush/scrypted
-        container_name: scrypted
-        restart: unless-stopped
-        network_mode: host
-        volumes:
-            - /opt/homekit/scrypted/_data:/server/volume
-        logging:
-            driver: "json-file"
-            options:
-                max-size: "10m"
-                max-file: "10"
+  scrypted:
+    image: koush/scrypted:latest
+    container_name: scrypted
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /opt/homekit/scrypted/_data:/server/volume
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"
 
-    homebridge:
-        image: oznu/homebridge:latest
-        container_name: homebridge
-        restart: unless-stopped
-        network_mode: host
-        volumes:
-            - /opt/homekit/homebridge/_data:/homebridge
-        logging:
-            driver: "json-file"
-            options:
-                max-size: "10m"
-                max-file: "1"
+  homebridge:
+    image: homebridge/homebridge:latest
+    container_name: homebridge
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /opt/homekit/homebridge/_data:/homebridge
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
 
-    # watchtower manages auto updates. this is optional.
-    watchtower:
-        image: containrrr/watchtower
-        restart: unless-stopped
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-        # check for updates once an hour (interval is in seconds)
-        command: --interval 3600 --cleanup
+  homeassistant:
+    image: homeassistant/home-assistant:latest
+    container_name: homeassistant
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /opt/homekit/homeassistant/_data:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    privileged: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 300 --cleanup
+
+# watchtower manages auto updates. this is optional.
+#    watchtower:
+#    image: containrrr/watchtower
+#    container_name: watchtower
+#    restart: unless-stopped
+#    volumes:
+#        - /var/run/docker.sock:/var/run/docker.sock
+#    # check for updates once an hour (interval is in seconds)
+#    command: --interval 3600 --cleanup
+#    ports:
+#        - "8081:8080" 
