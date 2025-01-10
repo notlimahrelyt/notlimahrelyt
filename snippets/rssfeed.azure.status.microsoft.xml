@@ -6,13 +6,13 @@
     <link>https://status.azure.com/en-us/status/</link>
     <description>Azure Status</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jan 2025 13:49:56 Z</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jan 2025 13:59:56 Z</lastBuildDate>
     <item>
       <guid
         isPermaLink="false">networking-issues-impacting-azure-services-in-east-us2</guid>
       <link>https://status.azure.com/en-us/status/</link>
       <category>App Service</category>
-      <category>Azure Container Service</category>
+      <category>Azure Container</category>
       <category>Azure Data Explorer</category>
       <category>Azure Databricks</category>
       <category>Azure NetApp Files</category>
