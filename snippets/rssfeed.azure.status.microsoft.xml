@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:a10="http://www.w3.org/2005/Atom"
+  version="2.0">
+  <channel xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <title>Azure Status</title>
+    <link>https://status.azure.com/en-us/status/</link>
+    <description>Azure Status</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Jan 2025 12:41:56 Z</lastBuildDate>
+    <item>
+      <guid
+        isPermaLink="false">networking-issues-impacting-azure-services-in-east-us2</guid>
+      <link>https://status.azure.com/en-us/status/</link>
+      <category>App Service</category>
+      <category>Azure Container Service</category>
+      <category>Azure Data Explorer</category>
+      <category>Azure Databricks</category>
+      <category>Azure NetApp Files</category>
+      <category>Azure Synapse Analytics</category>
+      <category>Container Instances</category>
+      <category>Data Factory</category>
+      <category>Azure Functions</category>
+      <category>Network Infrastructure</category>
+      <category>Virtual Machine Scale Sets</category>
+      <category>Virtual Machines</category>
+      <category>East US 2</category>
+      <title>Networking issues impacting Azure Services in East US2</title>
+      <description>&lt;p&gt;&lt;strong&gt;Impact Statement:&lt;/strong&gt; As early as 22:00 UTC on 08 Jan 2025, we noticed a partial impact to some of the Azure Services in East US 2 due to a configuration change in a regional networking service. This configuration change caused an inconsistent service state. This could have resulted in intermittent Virtual Machine connectivity issues, failures in allocating resources or communicating with resources in the region. The services impacted include Azure Databricks, Azure Container Apps, Azure Function Apps, Azure App Service, SQL Managed Instances, Azure Data Factory, Azure Container Instances, PowerBI, VMSS, PostgreSQL flexible servers, and additional services. Customers using resources with Private Endpoint Network Security Groups communicating with other services would also be impacted.&lt;/p&gt;&lt;p&gt;The impact is limited to a single zone in the East US 2 region. No other regions are impacted by this issue.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Current Status:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;As early as 22:00 UTC on 08 Jan 2025, service monitoring alerted us to a networking issue in East US 2 impacting multiple services. As part of the investigation, it was identified that a network configuration issue in one of the zones resulted in three of the Storage partitions going unhealthy. As an immediate remediation measure, traffic was re-routed away from the impacted zone, which brought some relief to the non-zonal services, and helped with newer allocations.&amp;nbsp;&lt;/p&gt;&lt;p&gt;Please also be aware that services that sent zonal requests to the impacted zone remained unhealthy. Some of the impacted services initiated their own Disaster Recovery options to help mitigate some of the impact being seen.&lt;/p&gt;&lt;p&gt;Additional workstreams to rehydrate the impacted zone by bringing back the impacted partitions to a healthy state are continuing. While we encountered some challenges which required more time than expected to step through the validation process of this fix, the mitigation workstream is now progressing as expected and we intend to bring the completed partitions online as a next step. We continue to monitor the health of these partitions, in parallel to bringing the final partition back to a healthy state, and are starting to see some signs of recovery.&lt;/p&gt;&lt;p&gt;We will continue to share more details on our progress in the next update. We continue to advise customers to execute Disaster Recovery to expedite recovery of their impacted services. Customers that have already failed out of the region should not fail back until this incident is fully mitigated. The next update will be provided in 1 hour or as events warrant.&lt;/p&gt;&lt;p&gt;For customers impacted due to Private Link, a patch was applied, and we confirm dependent services should be available.&lt;/p&gt;&lt;p&gt;We have been able to confirm that customers impacted by Azure Databricks, App Services multi-tenant, Azure Function Apps, Logic Apps, and Azure Synapse should start seeing some recovery.&lt;/p&gt;</description>
+      <pubDate>Wed, 08 Jan 2025 22:00:00 Z</pubDate>
+    </item>
+  </channel>
+</rss>
